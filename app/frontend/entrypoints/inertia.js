@@ -14,8 +14,8 @@ createInertiaApp({
   // progress: false,
 
   resolve: (name) => {
-    const pages = import.meta.glob('../pages/**/*.jsx', { eager: true })
-    return pages[`../pages/${name}.jsx`]
+    const pages = import.meta.glob('../pages/**/*.tsx', { eager: true })
+    return pages[`../pages/${name}.tsx`]
 
     // To use a default layout, import the Layout component
     // and use the following lines.
