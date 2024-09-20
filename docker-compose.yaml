@@ -20,6 +20,7 @@ services:
       - rubygems:/usr/local/bundle
     env_file:
       - .env
+    user: "${UID}:${GID}"
     ports:
       - 3100:3100
       - 3036:3036
