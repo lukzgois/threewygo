@@ -12,7 +12,7 @@ class Users::SessionsController < Devise::SessionsController
   def create
     user = User.find_by(email: params[:email].downcase)
 
-    if  user && user.valid_password?(params[:password])
+    if user && user.valid_password?(params[:password])
       sign_in(user)
       respond_with user, location: admin_courses_path
     else
