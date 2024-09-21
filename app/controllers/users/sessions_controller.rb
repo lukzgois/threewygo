@@ -5,7 +5,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /login
   def new
-    render inertia: 'auth/login', props: { test: :true }
+    render inertia: "auth/login", props: { test: :true }
   end
 
   # POST /resource/sign_in

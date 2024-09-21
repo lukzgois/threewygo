@@ -4,7 +4,7 @@ class AuthFailure < Devise::FailureApp
   include ActionController::Redirecting
 
   def http_auth?
-    if request.headers['X-Inertia']
+    if request.headers["X-Inertia"]
       # Explicitly disable HTTP authentication on Inertia
       # requests and force a redirect on failure
       false
@@ -14,8 +14,8 @@ class AuthFailure < Devise::FailureApp
   end
 
   def respond
-    if request.env.dig('warden.options', :action) == 'unauthenticated'
-      redirect_to "/login", inertia: { errors: { test: :errors }}
+    if request.env.dig("warden.options", :action) == "unauthenticated"
+      redirect_to "/login", inertia: { errors: { test: :errors } }
     end
   end
 end
