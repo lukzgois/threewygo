@@ -1,4 +1,4 @@
-import { Head, useForm, usePage } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import { ReactNode } from "react";
 import AuthLayout from "@layouts/AuthLayout";
 
@@ -8,7 +8,7 @@ const Login = () => {
     password: ''
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     post("/login")

@@ -24,10 +24,10 @@
     "noFallthroughCasesInSwitch": true,
 
     "paths": {
-      "@/*": ["app/frontend/*"],
-      "@assets/*": ["app/frontend/assets/*"],
-      "@pages/*": ["app/frontend/pages/*"],
-      "@layouts/*": ["app/frontend/layouts/*"]
+      "@/*": ["./app/frontend/*"],
+      "@assets/*": ["./app/frontend/assets/*"],
+      "@pages/*": ["./app/frontend/pages/*"],
+      "@layouts/*": ["./app/frontend/layouts/*"]
     },
   },
   "include": ["app/frontend"]
