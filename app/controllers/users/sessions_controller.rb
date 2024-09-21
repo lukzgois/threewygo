@@ -14,7 +14,7 @@ class Users::SessionsController < Devise::SessionsController
 
     if  user && user.valid_password?(params[:password])
       sign_in(user)
-      respond_with user, location: courses_path
+      respond_with user, location: admin_courses_path
     else
       redirect_to "/login", inertia: { errors: { email: "Email e/ou senha inválidos" } }
     end
