@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  # replace this generated route:
+  # devise_for :users
+  # with the new route below:
+
+  # devise routes
+  devise_for :users, skip: [ :sessions, :passwords, :registrations ]
+  as :user do
+    get 'login', to: 'users/sessions#new', as: :new_user_session
+    post 'login', to: 'users/sessions#create', as: :user_session
+    match 'logout', to: 'users/sessions#destroy', as: :destroy_user_session, via: Devise.mappings[:user].sign_out_via
+  end
+
   get 'inertia-example', to: 'inertia_example#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -12,4 +24,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "dashboard#index"
+
+  get 'courses', to: 'courses#index'
 end

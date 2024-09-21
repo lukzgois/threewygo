@@ -21,7 +21,14 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "paths": {
+      "@/*": ["app/frontend/*"],
+      "@assets/*": ["app/frontend/assets/*"],
+      "@pages/*": ["app/frontend/pages/*"],
+      "@layouts/*": ["app/frontend/layouts/*"]
+    },
   },
   "include": ["app/frontend"]
 }

@@ -15,6 +15,7 @@ export default defineConfig({
     alias: {
       '@pages': resolve(__dirname, 'app/frontend/pages'),
       '@assets': resolve(__dirname, 'app/frontend/assets'),
+      '@layouts': resolve(__dirname, 'app/frontend/layouts'),
     },
   },
 })
