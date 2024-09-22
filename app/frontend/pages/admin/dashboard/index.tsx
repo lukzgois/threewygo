@@ -3,9 +3,9 @@ import { Head } from '@inertiajs/react'
 export default function Index() {
   return (
     <>
-      <Head title="Cursos" />
+      <Head title="Admin - Dashboard" />
 
-      <h1>Cursos</h1>
+      <h1>Dashboard</h1>
     </>
   )
 }
