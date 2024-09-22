@@ -1,5 +1,6 @@
+import LinkButton from '@/components/link-button'
 import Title from '@/components/title'
-import { Head, Link } from '@inertiajs/react'
+import { Head } from '@inertiajs/react'
 
 export default function Index({ new_course_path }: { new_course_path: string}) {
   return (
@@ -10,10 +11,9 @@ export default function Index({ new_course_path }: { new_course_path: string}) {
         <div className="flex justify-between items-center">
           <Title>Cursos</Title>
 
-          <Link
+          <LinkButton
             href={new_course_path}
-            className="block focus:outline-none text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5"
-          >Novo Curso</Link>
+          >Novo Curso</LinkButton>
         </div>
       </div>
     </>
