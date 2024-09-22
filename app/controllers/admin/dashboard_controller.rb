@@ -1,4 +1,4 @@
-class CoursesController < ApplicationController
+class Admin::DashboardController < ApplicationController
   use_inertia_instance_props
   include Auth
 

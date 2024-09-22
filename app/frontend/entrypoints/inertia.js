@@ -1,7 +1,8 @@
 import { createInertiaApp } from '@inertiajs/react'
 import { createElement } from 'react'
 import { createRoot } from 'react-dom/client'
-import MainLayout from '../layouts/MainLayout'
+import AuthenticatedLayout from '../layouts/AuthenticatedLayout'
+import GuestLayout from '../layouts/GuestLayout'
 
 createInertiaApp({
   title: (title) => `${title} - Threewygo`,
@@ -24,7 +25,11 @@ createInertiaApp({
     // see https://inertia-rails.netlify.app/guide/pages#default-layouts
     //
     const page = pages[`../pages/${name}.tsx`]
-    page.default.layout ||= (page) => createElement(MainLayout, null, page)
+    // page.default.layout ||= (page) => createElement(MainLayout, null, page)
+    page.default.layout = name.startsWith('admin/')
+      ? (page) => createElement(AuthenticatedLayout, null, page)
+      : (page) => createElement(GuestLayout, null, page)
+
     return page
   },
 

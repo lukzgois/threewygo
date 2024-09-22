@@ -13,13 +13,17 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
     <%= vite_stylesheet_tag "application" %>
     <%= vite_react_refresh_tag %>
     <%= vite_client_tag %>
     <%= vite_javascript_tag "inertia" %>
     <%= inertia_headers %>
 
-      <%= vite_stylesheet_tag "application" %>    <%= vite_javascript_tag 'application' %>
+    <%= vite_stylesheet_tag "application" %>    <%= vite_javascript_tag 'application' %>
     <!--
       If using a TypeScript entrypoint file:
         vite_typescript_tag 'application'
@@ -32,7 +36,7 @@
 
   </head>
 
-  <body>
+  <body class="antialiased bg-gray-50">
     <%= yield %>
   </body>
 </html>

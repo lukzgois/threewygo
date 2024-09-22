@@ -12,9 +12,9 @@ class Users::SessionsController < Devise::SessionsController
   def create
     user = User.find_by(email: params[:email].downcase)
 
-    if  user && user.valid_password?(params[:password])
+    if user && user.valid_password?(params[:password])
       sign_in(user)
-      respond_with user, location: courses_path
+      respond_with user, location: admin_courses_path
     else
       redirect_to "/login", inertia: { errors: { email: "Email e/ou senha inválidos" } }
     end
