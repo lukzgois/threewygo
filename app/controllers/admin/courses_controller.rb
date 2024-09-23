@@ -22,7 +22,7 @@ class Admin::CoursesController < ApplicationController
 
   def show
     @course = CourseSerializer.new(course)
-    @new_course_path = new_admin_course_video_path(course)
+    @new_course_video_path = new_admin_course_video_path(course)
   end
 
   private
