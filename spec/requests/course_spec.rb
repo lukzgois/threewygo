@@ -17,7 +17,7 @@ RSpec.describe "Courses", type: :request, inertia: true do
     it "passes the url for the new course page" do
       get admin_courses_path
 
-      expect(inertia).to include_props({new_course_path: new_admin_course_path})
+      expect(inertia).to include_props({ new_course_path: new_admin_course_path })
     end
   end
 
