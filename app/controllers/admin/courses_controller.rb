@@ -7,6 +7,7 @@ class Admin::CoursesController < ApplicationController
   end
 
   def new
+    @create_course_path = admin_courses_path
   end
 
   def create

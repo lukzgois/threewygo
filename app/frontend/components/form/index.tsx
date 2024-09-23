@@ -4,6 +4,7 @@ import Label from "./label";
 import TextArea from "./text-area";
 import cn from "@/utils/cn";
 import Button from "./button";
+import DateInput from "./date-input";
 
 interface IForm {
   children: ReactNode,
@@ -26,3 +27,4 @@ Form.TextInput = TextInput
 Form.Label = Label
 Form.TextArea = TextArea
 Form.Button = Button
+Form.DateInput = DateInput
