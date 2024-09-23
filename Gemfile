@@ -44,6 +44,7 @@ group :development, :test do
   gem "vite_rails", "~> 3.0"
 
   gem "rspec-rails", "~> 7.0"
+  gem "shoulda-matchers"
 end
 
 group :development do
