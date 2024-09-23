@@ -8,6 +8,13 @@ export default defineConfig({
     react(),
     RubyPlugin(),
   ],
+  test: {
+    // 👋 add the line below to add jsdom to vite
+    environment: 'jsdom',
+    // hey! 👋 over here
+    globals: true,
+    setupFiles: 'tests/setup.js', // assuming the test folder is in the root of our project
+  },
   // In order to import from our frontend files using relative imports,
   // we need to alias any top level folders
   // https://vite-ruby.netlify.app/config/index.html#watchadditionalpaths

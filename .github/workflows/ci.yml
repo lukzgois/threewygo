@@ -69,12 +69,31 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set up frontend
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: build frontend
+        run: npm install && bin/vite build
+
+      - name: Create test database
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432
+        run: bin/rails db:create RAILS_ENV=test
+
+      - name: Migrate test database
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432
+        run: bin/rails db:migrate RAILS_ENV=test
+
       - name: Run tests
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
-          # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:setup spec
+        run: bin/rails spec
 
       # - name: Keep screenshots from failed system tests
       #   uses: actions/upload-artifact@v4

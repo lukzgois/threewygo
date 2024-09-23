@@ -27,6 +27,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "dashboard", to: "dashboard#index"
-    get "courses", to: "courses#index", as: :courses
+    resources :courses, only: [ :index, :new, :create ]
   end
 end
