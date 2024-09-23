@@ -30,6 +30,28 @@ RSpec.describe "Courses", type: :request, inertia: true do
     end
   end
 
+  context "GET courses/:id" do
+    let(:course) do
+      Course.create(title: "title", description: "description", end_date: Date.tomorrow)
+    end
+
+    it "should render the course show page" do
+      get admin_course_path(course)
+
+      expect(inertia).to render_component 'admin/courses/show'
+    end
+
+    it "passes the course attributes to the inertia component" do
+      get admin_course_path(course)
+
+      expect(inertia.props[:course].attributes[:id]).to eq(course.id)
+      expect(inertia.props[:course].attributes[:title]).to eq(course.title)
+      expect(inertia.props[:course].attributes[:description]).to eq(course.description)
+      expect(inertia.props[:course].attributes[:end_date]).to eq(course.end_date)
+      expect(inertia.props[:course].attributes[:end_date_formatted]).to eq(I18n.localize course.end_date)
+    end
+  end
+
   context "POST courses" do
     context "with valid params" do
       it "should create a new course" do
@@ -38,10 +60,10 @@ RSpec.describe "Courses", type: :request, inertia: true do
         }.to change(Course, :count).by(1)
       end
 
-      it "should redirect to the courses pages" do
+      it "should redirect to the course show page" do
         post admin_courses_path, params: { title: "title", description: "description", end_date: Date.tomorrow }
 
-        expect(response).to redirect_to admin_courses_path
+        expect(response).to redirect_to admin_course_path(Course.first)
       end
     end
 
