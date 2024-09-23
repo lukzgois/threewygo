@@ -35,15 +35,19 @@ export default function New({ create_video_path }: { create_video_path: string }
             {errors.title && <Form.Label.Error>{errors.title}</Form.Label.Error>}
           </Form.Label>
 
-          <Form.FileInput
-            onChange={(e) => setData('video', e.target.files[0])}
-          />
+          <Form.Label text="Vídeo">
+            <Form.FileInput
+              onChange={(e) => setData('video', e.target.files[0])}
+            />
+            {errors.video && <Form.Label.Error>{errors.video}</Form.Label.Error>}
 
-          {progress && (
-            <progress value={progress.percentage} max="100">
-              {progress.percentage}%
-            </progress>
-          )}
+            {progress && <progress
+              className="w-full h-2"
+              value={progress.percentage}
+              max="100"
+            />}
+          </Form.Label>
+
 
           <Form.Button>Cadastrar</Form.Button>
         </Form>
