@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
 
   def index
     @courses = ActiveModel::Serializer::CollectionSerializer.new(
-      Course.where('end_date > ?', Date.current),
+      Course.where("end_date > ?", Date.current),
       each_serializer: CourseSerializer
     )
   end
