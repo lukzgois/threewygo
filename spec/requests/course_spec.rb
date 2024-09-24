@@ -6,6 +6,10 @@ RSpec.describe "Courses", type: :request, inertia: true do
     sign_in user
   end
 
+  let(:course) do
+    Course.create(title: "title", description: "description", end_date: Date.tomorrow)
+  end
+
   context "GET courses/" do
     it "should render the courses index page" do
       get admin_courses_path
@@ -31,10 +35,6 @@ RSpec.describe "Courses", type: :request, inertia: true do
   end
 
   context "GET courses/:id" do
-    let(:course) do
-      Course.create(title: "title", description: "description", end_date: Date.tomorrow)
-    end
-
     it "should render the course show page" do
       get admin_course_path(course)
 
@@ -64,6 +64,59 @@ RSpec.describe "Courses", type: :request, inertia: true do
         post admin_courses_path, params: { title: "title", description: "description", end_date: Date.tomorrow }
 
         expect(response).to redirect_to admin_course_path(Course.first)
+      end
+    end
+
+    context "with invalid params" do
+      it "should not create a new course" do
+        expect {
+          post admin_courses_path
+        }.to change(Course, :count).by(0)
+      end
+
+      it "should redirect to the new course page" do
+        post admin_courses_path
+
+        expect(response).to redirect_to new_admin_course_path
+      end
+
+      it "should renders the inertia component" do
+        post admin_courses_path
+
+        follow_redirect!
+        expect(inertia).to render_component 'admin/courses/new'
+      end
+
+      it "passes the errors to the inertia component" do
+        post admin_courses_path
+
+        follow_redirect!
+        expect(inertia.props[:errors]).to include(:title, :description, :end_date)
+      end
+    end
+  end
+
+  context "PUT courses" do
+    let(:update_params) do
+      {
+        title: 'Novo título',
+        description: 'Descrição',
+        end_date: Date.tomorrow
+      }
+    end
+
+    context "with valid params" do
+      it "should update the course" do
+        expect {
+          put admin_course_path(course), params: update_params
+          course.reload
+        }.to change { course.title }.from('title').to(update_params[:title])
+      end
+
+      it "should redirect to the course page" do
+        put admin_course_path(course), params: update_params
+
+        expect(response).to redirect_to admin_course_path(course)
       end
     end
 

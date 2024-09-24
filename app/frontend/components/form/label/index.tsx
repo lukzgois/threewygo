@@ -10,7 +10,7 @@ interface IFormLabel {
 export default function Label({ children, text, required = true }: IFormLabel ) {
   return (
     <label
-      className="block mb-2"
+      className="block"
     >
       {text &&
         <span

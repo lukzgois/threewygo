@@ -11,6 +11,10 @@ class Admin::CoursesController < ApplicationController
     @create_course_path = admin_courses_path
   end
 
+  def edit
+    @course = CourseSerializer.new(find_course)
+  end
+
   def create
     course = Course.new(request_params)
 
@@ -21,12 +25,25 @@ class Admin::CoursesController < ApplicationController
     end
   end
 
+  def update
+    course = find_course
+
+    if course.update(request_params)
+      redirect_to admin_course_path(course), notice: "Curso alterado."
+    else
+      redirect_to edit_admin_course_path(course), inertia: { errors: course.errors }
+    end
+  end
+
   def show
+    course = find_course
     @course = CourseSerializer.new(course)
     @new_course_video_path = new_admin_course_video_path(course)
   end
 
   def destroy
+    course = find_course
+
     if course.destroy
       redirect_to admin_courses_path
     else
@@ -40,7 +57,7 @@ class Admin::CoursesController < ApplicationController
     params.permit(:title, :description, :end_date)
   end
 
-  def course
+  def find_course
     Course.find(params[:id])
   end
 end

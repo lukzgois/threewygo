@@ -3,29 +3,28 @@ import Panel from "@/components/panel";
 import Title from "@/components/title";
 import { Head, useForm } from "@inertiajs/react";
 import CourseForm from "./course-form";
+import ICourse from "@/types/ICourse";
 
-export default function New({ create_course_path }: { create_course_path: string }) {
-  const { data, setData, errors, post } = useForm({
-    title: '',
-    description: '',
-    end_date: '',
+export default function Edit({ course }: { course: ICourse }) {
+  const { data, setData, errors, put } = useForm({
+    title: course.title,
+    description: course.description,
+    end_date: course.end_date,
   })
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    post(create_course_path)
+    put(course.update_course_url)
   }
 
   return (
     <>
-      <Head title="Adicionar Curso" />
+      <Head title="Editar Curso" />
 
       <div className="grid lg:grid-cols-2">
         <Panel>
           <div className="mb-4">
-            <Title>
-              Adicionar Curso
-            </Title>
+            <Title>Editar Curso: {course.title}</Title>
           </div>
 
           <Form onSubmit={handleSubmit} className="space-y-4">
@@ -35,7 +34,7 @@ export default function New({ create_course_path }: { create_course_path: string
               errors={errors}
             />
 
-            <Form.Button>Cadastrar</Form.Button>
+            <Form.Button>Editar</Form.Button>
           </Form>
         </Panel>
       </div>
