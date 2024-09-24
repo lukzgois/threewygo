@@ -2,27 +2,10 @@ import LinkButton from '@/components/link-button'
 import Modal from '@/components/modal'
 import Panel from '@/components/panel'
 import Title from '@/components/title'
+import ICourse from '@/types/ICourse'
+import IVideo from '@/types/IVideo'
 import { Head, Link, useForm } from '@inertiajs/react'
 import { useState } from 'react'
-
-interface IVideo {
-  id: number,
-  title: string,
-  video_url: string,
-  delete_video_url: string,
-}
-
-interface ICourse {
-  title: string
-  description: string,
-  end_date_formatted: string,
-  videos: IVideo[]
-}
-
-interface IFormVideo {
-  video: IVideo
-}
-
 
 export default function Show({ course, new_course_video_path }: { course: ICourse, new_course_video_path: string }) {
   const [showDeleModal, setShowDeleteModal] = useState(false)
