@@ -1,3 +1,4 @@
+import Icon from '@/components/icon'
 import LinkButton from '@/components/link-button'
 import Modal from '@/components/modal'
 import Panel from '@/components/panel'
@@ -9,9 +10,27 @@ import { useState } from 'react'
 
 export default function Show({ course, new_course_video_path }: { course: ICourse, new_course_video_path: string }) {
   const [showDeleModal, setShowDeleteModal] = useState(false)
+  const [showCourseDeleModal, setShowCourseDeleteModal] = useState(false)
   const { data, setData, delete: deleteVideo } = useForm({
     video: null
   })
+  const { data: courseData, setData: setCourseData, delete: deleteCourse } = useForm({
+    course: null
+  })
+
+  const openCourseDeleteModal = (e) => {
+    setCourseData('course', course)
+    setShowCourseDeleteModal(true)
+    e.preventDefault()
+  }
+
+  const cancelCourseDelete = () => {
+    setShowCourseDeleteModal(false)
+  }
+
+  const confirmDeleteCourse = () => {
+    deleteCourse(course.delete_course_url)
+  }
 
   const openDeleteModal = (video: IVideo) => {
     setData('video', video)
@@ -36,16 +55,32 @@ export default function Show({ course, new_course_video_path }: { course: ICours
       <Head title="Cursos" />
 
       <Panel className="mb-4">
-        <div className="mb-4">
-          <Title>{course.title}</Title>
-        </div>
+        <div className="flex justify-between">
+          <div>
+            <div className="mb-4">
+              <Title>{course.title}</Title>
+            </div>
 
-        <div className="text-xs flex mb-4 text-gray-500">
-          <p className="mr-2">Data de término do curso: </p>
-          <p className="font-bold">{course.end_date_formatted}</p>
-        </div>
+            <div className="text-xs flex mb-4 text-gray-500">
+              <p className="mr-2">Data de término do curso: </p>
+              <p className="font-bold">{course.end_date_formatted}</p>
+            </div>
 
-        <p>{course.description}</p>
+            <p>{course.description}</p>
+          </div>
+
+          <div className="space-y-2">
+            <LinkButton href="" className="flex items-center">
+              <Icon.Edit className="mr-1"/>
+              Editar
+            </LinkButton>
+
+            <LinkButton href="#" onClick={openCourseDeleteModal } variant="warning" className="flex items-center">
+              <Icon.Trash className="mr-1"/>
+              Excluir
+            </LinkButton>
+          </div>
+        </div>
       </Panel>
 
       <Panel>
@@ -111,6 +146,15 @@ export default function Show({ course, new_course_video_path }: { course: ICours
             message="Você tem certeza que deseja excluir esse vídeo?"
             onConfirm={onConfirm}
             onCancel={onCancel}
+          />
+        }
+
+        {
+          showCourseDeleModal &&
+          <Modal
+            onConfirm={confirmDeleteCourse}
+            onCancel={cancelCourseDelete}
+            message="Você tem certeza que deseja excluir esse curso?"
           />
         }
       </Panel>

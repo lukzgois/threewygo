@@ -26,6 +26,14 @@ class Admin::CoursesController < ApplicationController
     @new_course_video_path = new_admin_course_video_path(course)
   end
 
+  def destroy
+    if course.destroy
+      redirect_to admin_courses_path
+    else
+      redirect_to admin_course_path(params[:course_id]), alert: "O curso não pode ser excluído!"
+    end
+  end
+
   private
 
   def request_params
