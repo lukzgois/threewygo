@@ -3,7 +3,7 @@ import Panel from "@/components/panel";
 import Title from "@/components/title";
 import { Head, useForm } from "@inertiajs/react";
 
-export default function New({ create_course_path }) {
+export default function New({ create_course_path }: { create_course_path: string }) {
   const { data, setData, errors, post } = useForm({
     title: '',
     description: '',
