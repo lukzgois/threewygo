@@ -23,7 +23,7 @@ class Admin::VideosController < ApplicationController
       video.video.purge_later
       redirect_to admin_course_path(params[:course_id])
     else
-      redirect_to admin_course_path(params[:course_id]), alert: 'O vídeo não pode ser excluído!'
+      redirect_to admin_course_path(params[:course_id]), alert: "O vídeo não pode ser excluído!"
     end
   end
 
