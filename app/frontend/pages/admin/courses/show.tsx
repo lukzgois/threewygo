@@ -14,6 +14,7 @@ export default function Show({ course, new_course_video_path }: { course: ICours
   const { data, setData, delete: deleteVideo } = useForm({
     video: null
   })
+
   const { data: courseData, setData: setCourseData, delete: deleteCourse } = useForm({
     course: null
   })
@@ -61,9 +62,14 @@ export default function Show({ course, new_course_video_path }: { course: ICours
               <Title>{course.title}</Title>
             </div>
 
-            <div className="text-xs flex mb-4 text-gray-500">
+            <div className="text-xs flex mb-1 text-gray-500">
               <p className="mr-2">Data de término do curso: </p>
               <p className="font-bold">{course.end_date_formatted}</p>
+            </div>
+
+            <div className="text-xs flex mb-4 text-gray-500">
+              <p className="mr-2">Tamanho total dos vídeos:</p>
+              <p className="font-bold">{course.videos_total_size}</p>
             </div>
 
             <p>{course.description}</p>
@@ -98,7 +104,11 @@ export default function Show({ course, new_course_video_path }: { course: ICours
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="px-6 py-3">
-                    Título do vídeo
+                    Título
+                  </th>
+
+                  <th scope="col" className="px-6 py-3">
+                    Tamanho
                   </th>
 
                   <th scope="col" className="px-6 py-3 text-right">
@@ -109,10 +119,14 @@ export default function Show({ course, new_course_video_path }: { course: ICours
 
               <tbody>
                 {course.videos.map(video => (
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={video.id}>
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  <tr className="bg-white border-b dark:bg-gray-800" key={video.id}>
+                    <td scope="row" className="px-6 py-4 whitespace-nowrap">
                       {video.title}
-                    </th>
+                    </td>
+
+                    <td className="px-6 py-4">
+                      {video.byte_size_formatted}
+                    </td>
 
                     <td className="px-6 py-4 text-right">
                       <span className="font-medium text-blue-600 dark:text-blue-500 hover:underline">

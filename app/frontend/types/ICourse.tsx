@@ -10,5 +10,6 @@ export default interface ICourse {
   delete_course_url: string,
   edit_course_url: string,
   update_course_url: string,
+  videos_total_size: string,
   videos: IVideo[]
 }

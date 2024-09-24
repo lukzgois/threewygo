@@ -3,4 +3,5 @@ export default interface IVideo {
   title: string,
   video_url: string,
   delete_video_url: string,
+  byte_size_formatted: string,
 }

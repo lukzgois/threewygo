@@ -27,6 +27,10 @@ export default function Index({ new_course_path, courses }: { new_course_path: s
                     Título do curso
                   </th>
 
+                  <th scope="col" className="px-6 py-3">
+                    Tamanho
+                  </th>
+
                   <th scope="col" className="px-6 py-3 text-right">
                     <span className="sr-only">Visualizar</span>
                   </th>
@@ -36,9 +40,13 @@ export default function Index({ new_course_path, courses }: { new_course_path: s
               <tbody>
                 {courses.map(course => (
                   <tr className="bg-white border-b hover:bg-gray-100" key={course.id}>
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                    <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                       {course.title}
-                    </th>
+                    </td>
+
+                  <td scope="col" className="px-6 py-3">
+                    {course.videos_total_size}
+                  </td>
 
                     <td scope="col" className="px-6 py-3 text-right">
                       <Link
