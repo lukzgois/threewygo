@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 export default function GuestLayout({ children }: { children: ReactNode }) {
   return (
-    <main>
+    <main className="pb-8">
       {children}
     </main>
   )
