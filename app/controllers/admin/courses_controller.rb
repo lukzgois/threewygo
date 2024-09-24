@@ -4,6 +4,7 @@ class Admin::CoursesController < ApplicationController
 
   def index
     @new_course_path = new_admin_course_path
+    @courses = ActiveModel::Serializer::CollectionSerializer.new(Course.all, each_serializer: CourseSerializer)
   end
 
   def new
