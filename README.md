@@ -1,24 +1,56 @@
-# README
+# Threewygo
+Mini aplicação web para cadastro e listagem de cursos
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Descrição
+Projeto criado para o teste seletivo `@twygo.`
+Essa aplicação web possui:
 
-Things you may want to cover:
+### Área pública
+- Homepage com listagem de cursos
+- Página do curso com a listagem de vídeos e o player
 
-* Ruby version
+### Área logada
+- CRUD de cursos
+- Página para cadastro/exclusão de vídeos
 
-* System dependencies
+## Ferramentas
+Essa aplicação foi criada utilizando `Ruby on Rails`, `React` e o framework `Inertia.js`
 
-* Configuration
+- Ruby on Rails
+- React
+- Inertia.js
+- Typescript
+- TailwindCSS
+- Docker
+- GitHub actions
+- Vite
+- RSpec
 
-* Database creation
+## Configuração
+### Pré-requisitos
+- Docker
+- Docker compose
 
-* Database initialization
+### Rodando o projeto
+1. Clone o projeto em sua máquina
+2. Copie o arquivo de variáveis de ambiente
+`cp .env.example .env`
+3. Execute o docker compose
+`docker compose up`
+4. Acesso o projeto através da url http://localhost:3100
 
-* How to run the test suite
+### Para rodar os testes
 
-* Services (job queues, cache servers, search engines, etc.)
+#### Testes de backend
 
-* Deployment instructions
+`docker compose run --rm app bin/rails spec`
 
-* ...
+#### Testes de frontend
+
+`docker compose run --rm app npm run test`
+
+
+
+
+
+
