@@ -17,9 +17,9 @@ export default function Index({ courses }: { courses: ICourse[] }) {
       </div>
 
       <div className="flex justify-center">
-        <div className="mt-6 grid gap-4">
+        <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {courses.map((course) => (
-            <Card key={course.id}>
+            <Card key={course.id} href={`/course/${course.id}`}>
               <h5 className="mb-4 text-2xl font-semibold tracking-tight text-gray-900">{ course.title }</h5>
               <p className="font-normal text-gray-700">{ course.description }</p>
               <p className="text-sm text-gray-500 mt-6">Termina em: <span className="font-bold">{ course.end_date_formatted }</span></p>

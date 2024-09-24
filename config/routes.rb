@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "dashboard#index"
 
+  get "course/:id", to: "dashboard#course"
+
   namespace :admin do
     get "dashboard", to: "dashboard#index"
     resources :courses, only: [ :index, :new, :show, :create ] do
