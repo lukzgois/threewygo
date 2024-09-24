@@ -95,4 +95,25 @@ RSpec.describe "Courses", type: :request, inertia: true do
       end
     end
   end
+
+  context "DELETE /courses/:id" do
+    let(:course) do
+      Course.create(title: "title", description: "description", end_date: Date.tomorrow)
+    end
+
+    it "should delete the course" do
+      path = admin_course_path(course)
+
+      expect {
+        delete path
+      }.to change(Course, :count).by(-1)
+    end
+
+    it "should redirect to the courses page" do
+      delete admin_course_path(course)
+      follow_redirect!
+
+      expect(inertia).to render_component 'admin/courses/index'
+    end
+  end
 end
