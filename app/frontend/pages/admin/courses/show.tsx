@@ -1,7 +1,9 @@
 import LinkButton from '@/components/link-button'
+import Modal from '@/components/modal'
 import Panel from '@/components/panel'
 import Title from '@/components/title'
-import { Head, Link } from '@inertiajs/react'
+import { Head, Link, useForm } from '@inertiajs/react'
+import { useState } from 'react'
 
 interface IVideo {
   id: number,
@@ -17,7 +19,35 @@ interface ICourse {
   videos: IVideo[]
 }
 
+interface IFormVideo {
+  video: IVideo
+}
+
+
 export default function Show({ course, new_course_video_path }: { course: ICourse, new_course_video_path: string }) {
+  const [showDeleModal, setShowDeleteModal] = useState(false)
+  const { data, setData, delete: deleteVideo } = useForm({
+    video: null
+  })
+
+  const openDeleteModal = (video: IVideo) => {
+    setData('video', video)
+    setShowDeleteModal(true)
+  }
+
+  const onConfirm = () => {
+    if(data.video === null)
+      return
+
+    deleteVideo(data.video.delete_video_url)
+    setShowDeleteModal(false)
+  }
+
+  const onCancel = () => {
+    setData('video', null)
+    setShowDeleteModal(false)
+  }
+
   return (
     <>
       <Head title="Cursos" />
@@ -67,13 +97,12 @@ export default function Show({ course, new_course_video_path }: { course: ICours
                     </th>
 
                     <td className="px-6 py-4 text-right">
-                      <span href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                        <Link
-                          href={video.delete_video_url}
-                          method="delete"
-                          as="button"
+                      <span className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        <a
+                          href="#"
                           className="text-red-500"
-                        >Excluir</Link>
+                          onClick={() => openDeleteModal(video)}
+                        >Excluir</a>
                       </span>
                     </td>
                   </tr>
@@ -91,6 +120,15 @@ export default function Show({ course, new_course_video_path }: { course: ICours
               Adicione o primeiro vídeo deste curso
             </Link>
           </div>
+        }
+
+        {
+          showDeleModal &&
+          <Modal
+            message="Você tem certeza que deseja excluir esse vídeo?"
+            onConfirm={onConfirm}
+            onCancel={onCancel}
+          />
         }
       </Panel>
     </>

@@ -10,6 +10,6 @@ class VideoSerializer < ActiveModel::Serializer
   end
 
   def delete_video_url
-    admin_course_videos_path(object.id)
+    admin_course_video_path(object.course_id, object.id)
   end
 end
