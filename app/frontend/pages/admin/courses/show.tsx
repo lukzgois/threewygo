@@ -55,7 +55,7 @@ export default function Show({ course, new_course_video_path }: { course: ICours
       <Head title="Cursos" />
 
       <Panel className="mb-4">
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-4">
           <div>
             <div className="mb-4">
               <Title>{course.title}</Title>
@@ -70,12 +70,12 @@ export default function Show({ course, new_course_video_path }: { course: ICours
           </div>
 
           <div className="space-y-2">
-            <LinkButton href="" className="flex items-center">
+            <LinkButton href={course.edit_course_url} className="flex items-center">
               <Icon.Edit className="mr-1"/>
               Editar
             </LinkButton>
 
-            <LinkButton href="#" onClick={openCourseDeleteModal } variant="warning" className="flex items-center">
+            <LinkButton href="#" onClick={ openCourseDeleteModal } variant="warning" className="flex items-center">
               <Icon.Trash className="mr-1"/>
               Excluir
             </LinkButton>
