@@ -22,7 +22,7 @@ export default function LoginForm({
   }
 
   return (
-    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <div>
       <Form
         className="space-y-6"
         onSubmit={(e: React.FormEvent<HTMLFormElement>) => { handleSubmit(e) }}

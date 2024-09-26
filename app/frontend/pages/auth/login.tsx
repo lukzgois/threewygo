@@ -16,18 +16,22 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div className="flex flex-col items-center justify-center px-6 pt-8 mx-auto">
       <Head title="Login" />
 
       <h2
-        className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
-      >Entre na sua conta</h2>
+        className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
+      >ThreeWygo</h2>
 
-      <LoginForm
-        onSubmit={onSubmit}
-        form={form}
-      />
-    </>
+      <div className="mt-10 w-full max-w-xl p-6 space-y-6 sm:p-8 bg-white rounded-lg shadow">
+        <h2 className="text-xl font-bold leading-9 tracking-tight text-gray-900" >Entre na sua conta</h2>
+
+        <LoginForm
+          onSubmit={onSubmit}
+          form={form}
+        />
+      </div>
+    </div>
   )
 }
 
