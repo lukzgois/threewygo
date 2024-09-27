@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+class DashboardController < PublicController
   use_inertia_instance_props
 
   def index
@@ -9,6 +9,8 @@ class DashboardController < ApplicationController
   end
 
   def course
-    @course = CourseSerializer.new(Course.find(params[:id]))
+    course = Course.find(params[:id])
+    @course = CourseSerializer.new(course)
+    add_breadcrumb(course.title)
   end
 end

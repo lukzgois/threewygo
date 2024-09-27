@@ -1,8 +1,9 @@
 import Card from '@/components/card'
 import ICourse from '@/types/ICourse'
-import { Head } from '@inertiajs/react'
+import { Head, usePage } from '@inertiajs/react'
 
 export default function Index({ courses }: { courses: ICourse[] }) {
+
   return (
     <>
       <Head title="Threewygo" />
@@ -15,6 +16,7 @@ export default function Index({ courses }: { courses: ICourse[] }) {
       <div className="mt-8">
         <h1 className="text-3xl text-center font-bold">Conheça nossos cursos</h1>
       </div>
+
 
       <div className="flex justify-center">
         <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

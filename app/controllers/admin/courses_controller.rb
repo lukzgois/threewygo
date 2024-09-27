@@ -1,4 +1,5 @@
-class Admin::CoursesController < ApplicationController
+class Admin::CoursesController < Admin::AdminController
+  before_action :set_base_breadcrumb
   use_inertia_instance_props
   include Auth
 
@@ -8,11 +9,16 @@ class Admin::CoursesController < ApplicationController
   end
 
   def new
+    add_breadcrumb("Novo Curso", new_admin_course_path)
     @create_course_path = admin_courses_path
   end
 
   def edit
-    @course = CourseSerializer.new(find_course)
+    course = find_course
+    @course = CourseSerializer.new(course)
+
+    add_breadcrumb(course.title, admin_course_path(course.id))
+    add_breadcrumb("Editar")
   end
 
   def create
@@ -39,6 +45,7 @@ class Admin::CoursesController < ApplicationController
     course = find_course
     @course = CourseSerializer.new(course)
     @new_course_video_path = new_admin_course_video_path(course)
+    add_breadcrumb(course.title)
   end
 
   def destroy
@@ -59,5 +66,9 @@ class Admin::CoursesController < ApplicationController
 
   def find_course
     Course.find(params[:id])
+  end
+
+  def set_base_breadcrumb
+    add_breadcrumb("Cursos", admin_courses_path)
   end
 end

@@ -2,6 +2,7 @@ import { PageProps } from '@inertiajs/core'
 import { Link, usePage, router } from '@inertiajs/react'
 import { ReactNode, useState } from 'react'
 import clsx from 'clsx'
+import Breadcrumbs from '@/components/breadcrumbs'
 
 type Auth = {
   user: string
@@ -11,6 +12,7 @@ export default function AuthenticatedLayout({ children }: { children: ReactNode 
   const [open, setOpen] = useState<Boolean>(false)
   const [sidebarOpen, setSidebarOpen] = useState<Boolean>(false)
   const auth = usePage<PageProps>().props.auth as Auth
+  const { breadcrumbs } = usePage<InertiaProps>().props
 
   router.on('navigate', () => {
     setSidebarOpen(false)
@@ -138,6 +140,8 @@ export default function AuthenticatedLayout({ children }: { children: ReactNode 
 
         <div className="relative w-full h-full overflow-y-auto bg-gray-50 md:ml-64">
           <main className="px-4 pt-6">
+            <Breadcrumbs className="mb-4" breadcrumbs={breadcrumbs} />
+
             {children}
           </main>
         </div>

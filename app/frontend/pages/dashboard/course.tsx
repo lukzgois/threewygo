@@ -1,10 +1,12 @@
+import Breadcrumbs from "@/components/breadcrumbs";
 import VideoModal from "@/components/video-modal";
 import ICourse from "@/types/ICourse";
 import IVideo from "@/types/IVideo";
-import { Head } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 import { useState } from "react";
 
 export default function Course({ course }: { course: ICourse }) {
+  const { breadcrumbs } = usePage<InertiaProps>().props
   const [video, setVideo] = useState<IVideo | null>(null)
 
   const handleVideoClick = (video: IVideo) => {
@@ -23,8 +25,11 @@ export default function Course({ course }: { course: ICourse }) {
         <h1 className="text-6xl mb-3 text-center max-w-2xl">{ course.title }</h1>
       </div>
 
+
       <div className="max-w-5xl mx-auto">
         <div className="mt-8 px-4 pb-4">
+          <Breadcrumbs breadcrumbs={breadcrumbs} className="mb-6" />
+
           <p className="text-md text-left">{ course.description }</p>
 
           <hr className="mt-4 border-gray-300" />
