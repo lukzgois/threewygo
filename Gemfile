@@ -42,7 +42,7 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  gem "inertia_rails-contrib", "~> 0.2.1"
+  gem "inertia_rails-contrib", "~> 0.2.2"
   gem "vite_rails", "~> 3.0"
 
   gem "rspec-rails", "~> 7.0"
