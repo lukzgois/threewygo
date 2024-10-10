@@ -111,11 +111,11 @@ GEM
       concurrent-ruby (~> 1.0)
     inertia_rails (3.2.0)
       railties (>= 5)
-    inertia_rails-contrib (0.2.1)
+    inertia_rails-contrib (0.2.2)
       inertia_rails
       railties (>= 6.0.0)
     io-console (0.7.2)
-    irb (1.14.0)
+    irb (1.14.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jbuilder (2.13.0)
@@ -299,7 +299,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webrick (1.8.1)
+    webrick (1.8.2)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -327,7 +327,7 @@ DEPENDENCIES
   brakeman
   debug
   devise
-  inertia_rails-contrib (~> 0.2.1)
+  inertia_rails-contrib (~> 0.2.2)
   jbuilder
   pg (~> 1.5)
   puma (>= 5.0)
